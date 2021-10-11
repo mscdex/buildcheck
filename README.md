@@ -4,6 +4,9 @@ Build environment checking for [node.js](http://nodejs.org/).
 
 This allows for autoconf-like functionality for node addons/build scripts.
 
+**Note:** Obsolete and/or exotic build environments or platforms not supported
+by node.js are not supported.
+
 ## Requirements
 
 * [node.js](http://nodejs.org/) -- v10.0.0 or newer
