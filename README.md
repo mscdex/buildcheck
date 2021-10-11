@@ -36,7 +36,7 @@ const { BuildEnvironment } = require('buildcheck');
 
 const buildEnv = new BuildEnvironment();
 
-console.log(buildEnv.checkHeaders('c', ['linux/io_uring.h']));
+console.log(buildEnv.checkHeader('c', 'linux/io_uring.h'));
 ```
 
 ### Try to compile some C code
@@ -67,16 +67,30 @@ console.log(buildEnv.tryCompile('c', 'int main() { return z; }'));
 
 * **(constructor)**([< _object_ >config]) - Creates and returns a new BuildEnvironment instance. `config` may contain:
 
-    * **compilerC** - _string_ - C compiler command to use. **Default:** `process.env.CC` or `'cc'`
+  * **compilerC** - _string_ - C compiler command to use. **Default:** `process.env.CC` or `'cc'`
 
-    * **compilerCPP** - _string_ - C++ compiler command to use. **Default:** `process.env.CXX` or `'c++'`
+  * **compilerCPP** - _string_ - C++ compiler command to use. **Default:** `process.env.CXX` or `'c++'`
 
-* **checkFunction**(< _string_ >lang, < _string_ >functionName[, < _object_ >options]) - _boolean_ - Checks if `functionName` exists and is linkable where `lang` is either `'c'` or `'c++'`. Returns `true` if function exists, `false` otherwise. `options` may contain:
+* **checkDeclared**(< _string_ >lang, < _string_ >symbolName[, < _object_ >options]) - _boolean_ - Checks if a symbol `symbolName` is declared where `lang` is either `'c'` or `'c++'`. Returns `true` if symbol exists, `false` otherwise. `options` may contain:
 
-    * **headers** - _array_ - List of header names to include when testing for function availability. Surround header names with double quotes to get a result like `#include "foo.h"`.
+  * **headers** - _array_ - List of header names to include when testing for symbol availability. Surround header names with double quotes to get a result like `#include "foo.h"`. **Defaults to a list of common headers**
 
-    * **compilerParams** - _array_ - A list of compiler/linker flags to include when testing.
+  * **compilerParams** - _array_ - A list of compiler/linker flags to include when testing.
 
-* **checkHeaders**(< _string_ >lang, < _array_ >headerNames[, < _array_ >compilerParams]) - _boolean_ - Checks if the headers in `headerNames` exist and are usable where `lang` is either `'c'` or `'c++'`. `compilerParams` is an optional list of compiler/linker flags to include when testing. Returns `true` if the headers exist and are usable, `false` otherwise.
+* **checkFunction**(< _string_ >lang, < _string_ >functionName[, < _object_ >options]) - _boolean_ - Checks if a function `functionName` exists and is linkable where `lang` is either `'c'` or `'c++'`. Returns `true` if function exists, `false` otherwise. `options` may contain:
+
+  * **headers** - _array_ - List of header names to include when testing for function availability. Surround header names with double quotes to get a result like `#include "foo.h"`.
+
+  * **compilerParams** - _array_ - A list of compiler/linker flags to include when testing.
+
+* **checkFeature**(< _string_ >featureName) - _mixed_ - Executes a special test for a "feature" and returns the result. Supported values for `featureName`:
+
+  * `'strerror_r'` - Returns an object containing:
+
+    * `declared` - _boolean_ - Whether `strerror_r()` is declared
+
+    * `returnsCharPtr` - _boolean_ - If `strerror_r()` is declared, whether it returns `char*` (a GNU extension) or not.
+
+* **checkHeader**(< _string_ >lang, < _string_ >headerName[, < _array_ >compilerParams]) - _boolean_ - Checks if the header `headerName` exists and is usable where `lang` is either `'c'` or `'c++'`. `compilerParams` is an optional list of compiler/linker flags to include when testing. Returns `true` if the header exists and is usable, `false` otherwise.
 
 * **tryCompile**(< _string_ >lang, < _string_ >code[, < _array_ >compilerParams]) - _mixed_ - Attempts to compile `code` where `lang` is either `'c'` or `'c++'`. `compilerParams` is an optional array of compiler/linker flags to include. Returns `true` on successful compilation, or an _Error_ instance with an `output` property containing the compiler error output.
