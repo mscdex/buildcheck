@@ -10,7 +10,10 @@ by node.js are not supported.
 ## Requirements
 
 * [node.js](http://nodejs.org/) -- v10.0.0 or newer
-* gcc _or_ clang
+* Supported compilers:
+  * gcc
+  * clang
+  * MSVC 2013+ and Windows SDK 8.1+
 
 ## Installation
 
