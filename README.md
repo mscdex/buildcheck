@@ -76,7 +76,9 @@ console.log(buildEnv.tryCompile('c', 'int main() { return z; }'));
 
 * **checkDeclared**(< _string_ >lang, < _string_ >symbolName[, < _object_ >options]) - _boolean_ - Checks if a symbol `symbolName` is declared where `lang` is either `'c'` or `'c++'`. Returns `true` if symbol exists, `false` otherwise. `options` may contain:
 
-  * **compilerParams** - _array_ - A list of compiler/linker flags to include when testing.
+  * **headers** - _array_ - A list of headers to try when checking if the symbol is declared. `checkFunction()` will always first try without a library. If not supplied, a default list of common (platform-specific) headers will be used.
+
+  * **searchLibs** - _array_ - A list of library names (without the `'-l'` prefix) to try when checking if the symbol is declared. `checkDeclared()` will always first try without a library.
 
 * **checkFunction**(< _string_ >lang, < _string_ >functionName[, < _object_ >options]) - _boolean_ - Checks if a function `functionName` exists and is linkable where `lang` is either `'c'` or `'c++'`. Returns `true` if function exists, `false` otherwise. `options` may contain:
 
