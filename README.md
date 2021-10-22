@@ -70,9 +70,11 @@ console.log(buildEnv.tryCompile('c', 'int main() { return z; }'));
 
 * **(constructor)**([< _object_ >config]) - Creates and returns a new BuildEnvironment instance. `config` may contain:
 
-  * **compilerC** - _string_ - C compiler command to use. **Default:** `process.env.CC` or `'cc'`
+  * **compilerC** - _string_ - C compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CC` or `'cc'`
 
-  * **compilerCXX** - _string_ - C++ compiler command to use. **Default:** `process.env.CXX` or `'c++'`
+  * **compilerCXX** - _string_ - C++ compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CXX` or `'c++'`
+
+  * **msvs_version** - _mixed_ - A string or number containing the year of the Visual Studio compiler to use. *Note: this is for Windows only.* **Default:** newest version installed
 
 * **checkDeclared**(< _string_ >lang, < _string_ >symbolName[, < _object_ >options]) - _boolean_ - Checks if a symbol `symbolName` is declared where `lang` is either `'c'` or `'c++'`. Returns `true` if symbol exists, `false` otherwise. `options` may contain:
 
