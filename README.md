@@ -94,7 +94,7 @@ console.log(buildEnv.tryCompile('c', 'int main() { return z; }'));
 
     * `returnsCharPtr` - _boolean_ - If `strerror_r()` is declared, whether it returns `char*` (a GNU extension) or not.
 
-* **checkHeader**(< _string_ >lang, < _string_ >headerName[, < _array_ >compilerParams]) - _boolean_ - Checks if the header `headerName` exists and is usable where `lang` is either `'c'` or `'c++'`. `compilerParams` is an optional list of compiler/linker flags to include when testing. Returns `true` if the header exists and is usable, `false` otherwise.
+* **checkHeader**(< _string_ >lang, < _string_ >headerName) - _boolean_ - Checks if the header `headerName` exists and is usable where `lang` is either `'c'` or `'c++'`. Returns `true` if the header exists and is usable, `false` otherwise.
 
 * **defines**([< _string_ >lang[, < _boolean_ >rendered]]) - _array_ - Returns a list of features, functions, headers, and symbols known to be defined by this build environment instance. `lang` is either `'c'` or `'c++'` If `lang` is not set, defines for both `'c'` and `'c++'` will be returned. If `rendered` is `true` (defaults to `false`), autoconf-style defines (e.g. "HAVE_FOO=1") will be returned instead. Defines coming from features utilize base strings/names from autoconf for better compatibility.
 
