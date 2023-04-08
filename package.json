@@ -12,6 +12,7 @@
     "eslint": "^7.0.0"
   },
   "scripts": {
+    "test": "node test/test.js",
     "lint": "eslint --cache --report-unused-disable-directives --ext=.js .eslintrc.js lib",
     "lint:fix": "npm run lint -- --fix"
   },
