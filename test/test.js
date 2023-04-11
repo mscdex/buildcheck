@@ -4,5 +4,5 @@ const BE = require('..');
 
 {
   // Test compiler detection
-  new BE();
+  new BE({ debug: console.log });
 }
