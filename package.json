@@ -1,6 +1,6 @@
 {
   "name": "buildcheck",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Brian White <mscdex@mscdex.net>",
   "description": "Build environment checking (a la autoconf) for node.js",
   "main": "./lib/index.js",
