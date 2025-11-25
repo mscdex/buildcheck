@@ -11,13 +11,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x, 18.x, 20.x]
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x, 20.x, 22.x, 24.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Check Node.js version
@@ -26,38 +26,38 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
-  tests-macos:
+  tests-macos-intel:
+    runs-on: macos-13
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 16.x, 18.x, 20.x, 22.x, 24.x]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Check Node.js version
+        run: node -pe process.versions
+      - name: Install module
+        run: npm install
+      - name: Run tests
+        run: npm test
+  tests-macos-arm:
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x, 18.x, 20.x]
+        node-version: [16.x, 18.x, 20.x, 22.x, 24.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Check Node.js version
-        run: node -pe process.versions
-      - name: Install module
-        run: npm install
-      - name: Run tests
-        run: npm test
-  tests-windows-2019:
-    runs-on: windows-2019
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 16.x, 18.x, 20.x]
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Check Node.js version
@@ -71,13 +71,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18.x]
+        node-version: [24.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Check Node.js version
