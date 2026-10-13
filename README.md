@@ -73,9 +73,9 @@ The exported value is `BuildEnvironment`, the main class for dealing with a buil
 
 * **(constructor)**([< _object_ >config]) - Creates and returns a new BuildEnvironment instance. `config` may contain:
 
-  * **compilerC** - _string_ - C compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CC` or `'cc'`
+  * **compilerC** - _string_ - C compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CC` (split into words like a shell would) or `'cc'`
 
-  * **compilerCXX** - _string_ - C++ compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CXX` or `'c++'`
+  * **compilerCXX** - _string_ - C++ compiler command to use. *Note: this is ignored on Windows.* **Default:** `process.env.CXX` (split into words like a shell would) or `'c++'`
 
   * **msvs_version** - _mixed_ - A string or number containing the year of the Visual Studio compiler to use. *Note: this is for Windows only.* **Default:** newest version installed
 
